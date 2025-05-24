@@ -17,3 +17,43 @@ An Azure Key Vault emulator for local development
    ```bash
    npm run dev
    ```
+
+### Get Secret
+
+#### Get the latest version of a secret by name
+
+```
+GET /secrets/:name
+```
+
+**Example:**
+```
+GET /secrets/mySecret
+```
+
+#### Get a specific version of a secret
+
+```
+GET /secrets/:name/:version
+```
+
+**Example:**
+```
+GET /secrets/mySecret/1
+```
+
+**Response:**
+Returns the secret object as stored in memory (structure matches your JSON file).  
+If not found, returns:
+```json
+{ "error": "Secret not found" }
+```
+
+---
+
+## Structure
+
+- `src/app.js` - Express app definition and secret API
+- `src/server.js` - Server startup script
+- `data/example-secrets.json` - Example secrets data file
+- `package.json` - Project metadata and dependencies
