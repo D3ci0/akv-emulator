@@ -1,0 +1,62 @@
+[
+  {
+    "cer": "MIIFDzCCAvegAwIBAgIUDFJ5Won7Yhixpi/A7SGH6gF7sYAwDQYJKoZIhvcNAQELBQAwFzEVMBMGA1UEAwwMYWt2LWVtdWxhdG9yMB4XDTI1MDUyNTE0MTAzM1oXDTI2MDUyNTE0MTAzM1owFzEVMBMGA1UEAwwMYWt2LWVtdWxhdG9yMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAs4AdepU/8KdK4CCO2ylx5/X5pgcPzEU74v1TIhgYVOf7GcTp4MHlEr0iYU/xPbJ/qb34xCems1q9dSlfS6BHYek2v4hA/Uy0T/Kf1yQrILO6uCJ0RxzvbfsFUEyMTiuCoZKSOr43EtcZBv498YAdkYwisgsArOCnVbjsFgsCqITp9BfHAj0DOof8dVLZYD/3+uuLt9QCS3wIejfTYgG4gbB+SMUg49HdTrUSV8d2nbkwUkEIDlt8EquRiU85A+coG/9P+Jf1bY6mD8GPPkyKh11PKGQ0zige6y+KVOAj9AgKvVuK5IccNzhhQHyhwwMBV0Xl2zVbza8f9/q7fjhxMgJFX7BpN89jtppYSO1/6aM5oWg16QM6ihN2ZHpp1aOGAQBjaGnC9LtI9SoeNlxC3ghbU0LKIVYw47Ki2bnvJmrJJ7h1mqMdpe9oMubJkoHnQn4FyzSdqEaJiFMNZGYMQtY9mGe/bF/KjMl5sjoLDD/H5VRHoXafZ7fKc1exBfeH+qMkZ6Lwzfm8j7oCh13QktcTfDJIje2qc0GNfRcV/9LtlG162Ywh8Q+MwUu3da/fkIeI0kYzDiDUArOytlgCi/G5NcRcrrsbxlqTi3tDaAqw7vSjv8ZFcEJogQ1jsFLUlTraOgZs5j6v5OObMPx6bh3TRNmUmMohL+nCaOXG4YkCAwEAAaNTMFEwHQYDVR0OBBYEFEr/pOcsQ/wjLYrWgthTkxgFwi0yMB8GA1UdIwQYMBaAFEr/pOcsQ/wjLYrWgthTkxgFwi0yMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggIBAEJP5Gx0EojF6XKm+0aQL9gGNdetouYx4E8Cj3A/85McHZs/GfUCr6Okcwr2KbDitngsYilwCMU0nVBM8bfOkM2PXAhB/B6b5k2hifK61gGptoN2+CLxoLqspJzfnc7NVpQPjslS0tER6LIb1dvRAk8bhcEUcrTZnRB91OnstJXVr5dYGHD4MnYx3EFu5lpU5GbtmddS6BCJgkgw8GIgTyxSTE4baHj2io/jSY9DHc+O6vBRwqF3XzNRJlN9WX11loG7WjaKHY/MdZCkBUkhJCjtYa6e2oeLL/XTHXLN46fpOtU9oe/tSQ3hzPJXr8Pb3Rwt3uYLgz3B66rPey8VJZrInr23xEsJTTQMzox6WkMZX+Qg2gDA8WXfTNeeA9f6TURLQemWUfLAHHesW7PR1TmROjfuo4clUpaa5R6qN4PrnUBi/GIm3OqtRWrsMjBymj7MD1euOJaO71HIEsPabEZehQVSUQN7cFB4AeHjOUPPW+RgxjSy6tb7IdPWtXRzsRHGxB3wfrVpbJjoMfGfp7TZbjBQ4QiYcqEM0WXOAdvydvQJgsccDgFQwea+ZHyTHmw7Bm631sNPk69e6wKb6MX9ttDDMyFGlwkQ4M1xIR80C00nse3yxirg5G06B1AeP2AZaKFn7OZNx+rbj9R1cn6Gc2IzCkGp58Ahj5kgR0K3",
+    "keyId": "https://myvault.vault.azure.net/keys/my-cert/v1",
+    "secretId": "https://myvault.vault.azure.net/secrets/my-cert/v1",
+    "properties": {
+      "vaultUrl": "https://myvault.vault.azure.net/",
+      "version": "v1",
+      "name": "my-cert",
+      "enabled": true,
+      "notBefore": "2023-01-01T00:00:00Z",
+      "expiresOn": "2024-01-01T00:00:00Z",
+      "createdOn": "2023-01-01T00:00:00Z",
+      "updatedOn": "2023-06-01T00:00:00Z",
+      "recoveryLevel": "Recoverable+Purgeable",
+      "id": "my-cert-v1",
+      "tags": { "env": "prod" },
+      "x509Thumbprint": "abc123",
+      "recoverableDays": 90
+    }
+  },
+  {
+    "cer": "MIIFDzCCAvegAwIBAgIUDFJ5Won7Yhixpi/A7SGH6gF7sYAwDQYJKoZIhvcNAQELBQAwFzEVMBMGA1UEAwwMYWt2LWVtdWxhdG9yMB4XDTI1MDUyNTE0MTAzM1oXDTI2MDUyNTE0MTAzM1owFzEVMBMGA1UEAwwMYWt2LWVtdWxhdG9yMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAs4AdepU/8KdK4CCO2ylx5/X5pgcPzEU74v1TIhgYVOf7GcTp4MHlEr0iYU/xPbJ/qb34xCems1q9dSlfS6BHYek2v4hA/Uy0T/Kf1yQrILO6uCJ0RxzvbfsFUEyMTiuCoZKSOr43EtcZBv498YAdkYwisgsArOCnVbjsFgsCqITp9BfHAj0DOof8dVLZYD/3+uuLt9QCS3wIejfTYgG4gbB+SMUg49HdTrUSV8d2nbkwUkEIDlt8EquRiU85A+coG/9P+Jf1bY6mD8GPPkyKh11PKGQ0zige6y+KVOAj9AgKvVuK5IccNzhhQHyhwwMBV0Xl2zVbza8f9/q7fjhxMgJFX7BpN89jtppYSO1/6aM5oWg16QM6ihN2ZHpp1aOGAQBjaGnC9LtI9SoeNlxC3ghbU0LKIVYw47Ki2bnvJmrJJ7h1mqMdpe9oMubJkoHnQn4FyzSdqEaJiFMNZGYMQtY9mGe/bF/KjMl5sjoLDD/H5VRHoXafZ7fKc1exBfeH+qMkZ6Lwzfm8j7oCh13QktcTfDJIje2qc0GNfRcV/9LtlG162Ywh8Q+MwUu3da/fkIeI0kYzDiDUArOytlgCi/G5NcRcrrsbxlqTi3tDaAqw7vSjv8ZFcEJogQ1jsFLUlTraOgZs5j6v5OObMPx6bh3TRNmUmMohL+nCaOXG4YkCAwEAAaNTMFEwHQYDVR0OBBYEFEr/pOcsQ/wjLYrWgthTkxgFwi0yMB8GA1UdIwQYMBaAFEr/pOcsQ/wjLYrWgthTkxgFwi0yMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggIBAEJP5Gx0EojF6XKm+0aQL9gGNdetouYx4E8Cj3A/85McHZs/GfUCr6Okcwr2KbDitngsYilwCMU0nVBM8bfOkM2PXAhB/B6b5k2hifK61gGptoN2+CLxoLqspJzfnc7NVpQPjslS0tER6LIb1dvRAk8bhcEUcrTZnRB91OnstJXVr5dYGHD4MnYx3EFu5lpU5GbtmddS6BCJgkgw8GIgTyxSTE4baHj2io/jSY9DHc+O6vBRwqF3XzNRJlN9WX11loG7WjaKHY/MdZCkBUkhJCjtYa6e2oeLL/XTHXLN46fpOtU9oe/tSQ3hzPJXr8Pb3Rwt3uYLgz3B66rPey8VJZrInr23xEsJTTQMzox6WkMZX+Qg2gDA8WXfTNeeA9f6TURLQemWUfLAHHesW7PR1TmROjfuo4clUpaa5R6qN4PrnUBi/GIm3OqtRWrsMjBymj7MD1euOJaO71HIEsPabEZehQVSUQN7cFB4AeHjOUPPW+RgxjSy6tb7IdPWtXRzsRHGxB3wfrVpbJjoMfGfp7TZbjBQ4QiYcqEM0WXOAdvydvQJgsccDgFQwea+ZHyTHmw7Bm631sNPk69e6wKb6MX9ttDDMyFGlwkQ4M1xIR80C00nse3yxirg5G06B1AeP2AZaKFn7OZNx+rbj9R1cn6Gc2IzCkGp58Ahj5kgR0K3",
+    "keyId": "https://myvault.vault.azure.net/keys/my-cert/v2",
+    "secretId": "https://myvault.vault.azure.net/secrets/my-cert/v2",
+    "properties": {
+      "vaultUrl": "https://myvault.vault.azure.net/",
+      "version": "v2",
+      "name": "my-cert",
+      "enabled": false,
+      "notBefore": "2024-01-02T00:00:00Z",
+      "expiresOn": "2025-01-01T00:00:00Z",
+      "createdOn": "2024-01-02T00:00:00Z",
+      "updatedOn": "2024-06-01T00:00:00Z",
+      "recoveryLevel": "Recoverable+Purgeable",
+      "id": "my-cert-v2",
+      "tags": { "env": "prod" },
+      "x509Thumbprint": "def456",
+      "recoverableDays": 90
+    }
+  },
+  {
+    "cer": "MIIFDzCCAvegAwIBAgIUDFJ5Won7Yhixpi/A7SGH6gF7sYAwDQYJKoZIhvcNAQELBQAwFzEVMBMGA1UEAwwMYWt2LWVtdWxhdG9yMB4XDTI1MDUyNTE0MTAzM1oXDTI2MDUyNTE0MTAzM1owFzEVMBMGA1UEAwwMYWt2LWVtdWxhdG9yMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAs4AdepU/8KdK4CCO2ylx5/X5pgcPzEU74v1TIhgYVOf7GcTp4MHlEr0iYU/xPbJ/qb34xCems1q9dSlfS6BHYek2v4hA/Uy0T/Kf1yQrILO6uCJ0RxzvbfsFUEyMTiuCoZKSOr43EtcZBv498YAdkYwisgsArOCnVbjsFgsCqITp9BfHAj0DOof8dVLZYD/3+uuLt9QCS3wIejfTYgG4gbB+SMUg49HdTrUSV8d2nbkwUkEIDlt8EquRiU85A+coG/9P+Jf1bY6mD8GPPkyKh11PKGQ0zige6y+KVOAj9AgKvVuK5IccNzhhQHyhwwMBV0Xl2zVbza8f9/q7fjhxMgJFX7BpN89jtppYSO1/6aM5oWg16QM6ihN2ZHpp1aOGAQBjaGnC9LtI9SoeNlxC3ghbU0LKIVYw47Ki2bnvJmrJJ7h1mqMdpe9oMubJkoHnQn4FyzSdqEaJiFMNZGYMQtY9mGe/bF/KjMl5sjoLDD/H5VRHoXafZ7fKc1exBfeH+qMkZ6Lwzfm8j7oCh13QktcTfDJIje2qc0GNfRcV/9LtlG162Ywh8Q+MwUu3da/fkIeI0kYzDiDUArOytlgCi/G5NcRcrrsbxlqTi3tDaAqw7vSjv8ZFcEJogQ1jsFLUlTraOgZs5j6v5OObMPx6bh3TRNmUmMohL+nCaOXG4YkCAwEAAaNTMFEwHQYDVR0OBBYEFEr/pOcsQ/wjLYrWgthTkxgFwi0yMB8GA1UdIwQYMBaAFEr/pOcsQ/wjLYrWgthTkxgFwi0yMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggIBAEJP5Gx0EojF6XKm+0aQL9gGNdetouYx4E8Cj3A/85McHZs/GfUCr6Okcwr2KbDitngsYilwCMU0nVBM8bfOkM2PXAhB/B6b5k2hifK61gGptoN2+CLxoLqspJzfnc7NVpQPjslS0tER6LIb1dvRAk8bhcEUcrTZnRB91OnstJXVr5dYGHD4MnYx3EFu5lpU5GbtmddS6BCJgkgw8GIgTyxSTE4baHj2io/jSY9DHc+O6vBRwqF3XzNRJlN9WX11loG7WjaKHY/MdZCkBUkhJCjtYa6e2oeLL/XTHXLN46fpOtU9oe/tSQ3hzPJXr8Pb3Rwt3uYLgz3B66rPey8VJZrInr23xEsJTTQMzox6WkMZX+Qg2gDA8WXfTNeeA9f6TURLQemWUfLAHHesW7PR1TmROjfuo4clUpaa5R6qN4PrnUBi/GIm3OqtRWrsMjBymj7MD1euOJaO71HIEsPabEZehQVSUQN7cFB4AeHjOUPPW+RgxjSy6tb7IdPWtXRzsRHGxB3wfrVpbJjoMfGfp7TZbjBQ4QiYcqEM0WXOAdvydvQJgsccDgFQwea+ZHyTHmw7Bm631sNPk69e6wKb6MX9ttDDMyFGlwkQ4M1xIR80C00nse3yxirg5G06B1AeP2AZaKFn7OZNx+rbj9R1cn6Gc2IzCkGp58Ahj5kgR0K3",
+    "keyId": "https://myvault.vault.azure.net/keys/another-cert/v1",
+    "secretId": "https://myvault.vault.azure.net/secrets/another-cert/v1",
+    "properties": {
+      "vaultUrl": "https://myvault.vault.azure.net/",
+      "version": "v1",
+      "name": "another-cert",
+      "enabled": true,
+      "notBefore": "2023-05-01T00:00:00Z",
+      "expiresOn": "2024-05-01T00:00:00Z",
+      "createdOn": "2023-05-01T00:00:00Z",
+      "updatedOn": "2023-10-01T00:00:00Z",
+      "recoveryLevel": "Recoverable+Purgeable",
+      "id": "another-cert-v1",
+      "tags": { "env": "dev" },
+      "x509Thumbprint": "xyz789",
+      "recoverableDays": 60
+    }
+  }
+]
