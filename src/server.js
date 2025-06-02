@@ -17,7 +17,7 @@ let httpsOptions;
 try {
   httpsOptions = {
     key: fs.readFileSync(sslKeyPath),
-    cert: fs.readFileSync(sslCertPath)
+    cert: fs.readFileSync(sslCertPath),
   };
   // Start HTTPS server
   https.createServer(httpsOptions, app).listen(HTTPS_PORT, () => {
@@ -31,4 +31,3 @@ try {
 http.createServer(app).listen(HTTP_PORT, () => {
   console.log(`HTTP server listening on port ${HTTP_PORT}`);
 });
-

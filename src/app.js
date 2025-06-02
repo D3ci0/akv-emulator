@@ -22,7 +22,9 @@ try {
   const secretArray = JSON.parse(secretJson);
   if (Array.isArray(secretArray)) {
     keyVaultSecrets = secretArray.map(KeyVaultSecret.fromJSON);
-    console.log(`Loaded KeyVaultSecrets at startup from example json file. KeyVaultSecret list new size: ${keyVaultSecrets.length}.`);
+    console.log(
+      `Loaded KeyVaultSecrets at startup from example json file. KeyVaultSecret list new size: ${keyVaultSecrets.length}.`
+    );
   } else {
     console.error('Secret JSON is not an array.');
   }
@@ -33,12 +35,16 @@ try {
 // Load KeyVaultSecrets from external JSON file at boot time
 // Allow secrets file path to be set via environment variable
 try {
-  const externalSecretJson =
-      fs.readFileSync(path.join(process.env.SECRETS_DIR, 'test-secrets.json'), 'utf-8');
+  const externalSecretJson = fs.readFileSync(
+    path.join(process.env.SECRETS_DIR, 'test-secrets.json'),
+    'utf-8'
+  );
   const secretArray = JSON.parse(externalSecretJson);
   if (Array.isArray(secretArray)) {
     keyVaultSecrets = [...keyVaultSecrets, ...secretArray.map(KeyVaultSecret.fromJSON)];
-    console.log(`Loaded KeyVaultSecrets at startup from external json file. KeyVaultSecret list new size: ${keyVaultSecrets.length}.`);
+    console.log(
+      `Loaded KeyVaultSecrets at startup from external json file. KeyVaultSecret list new size: ${keyVaultSecrets.length}.`
+    );
   } else {
     console.error('Secret JSON is not an array.');
   }
@@ -53,7 +59,9 @@ try {
   const certificateArray = JSON.parse(certificatePropertiesJson);
   if (Array.isArray(certificateArray)) {
     keyVaultCertificates = certificateArray.map(KeyVaultCertificate.fromJSON);
-    console.log(`Loaded KeyVaultCertificates at startup. KeyVaultCertificates list new size: ${keyVaultCertificates.length}.`);
+    console.log(
+      `Loaded KeyVaultCertificates at startup. KeyVaultCertificates list new size: ${keyVaultCertificates.length}.`
+    );
   } else {
     console.error('Certificate JSON is not an array.');
   }
@@ -64,12 +72,19 @@ try {
 // Load KeyVaultCertificates from external JSON file at boot time
 // Allow certificate file path to be set via environment variable
 try {
-  const certificatePropertiesJson =
-      fs.readFileSync(path.join(process.env.CERTIFICATES_DIR, 'test-certificates.json'), 'utf-8');
+  const certificatePropertiesJson = fs.readFileSync(
+    path.join(process.env.CERTIFICATES_DIR, 'test-certificates.json'),
+    'utf-8'
+  );
   const certificateArray = JSON.parse(certificatePropertiesJson);
   if (Array.isArray(certificateArray)) {
-    keyVaultCertificates = [...keyVaultCertificates, ...certificateArray.map(KeyVaultCertificate.fromJSON)];
-    console.log(`Loaded KeyVaultCertificates at startup from external json file. KeyVaultCertificates list new size: ${keyVaultCertificates.length}.`);
+    keyVaultCertificates = [
+      ...keyVaultCertificates,
+      ...certificateArray.map(KeyVaultCertificate.fromJSON),
+    ];
+    console.log(
+      `Loaded KeyVaultCertificates at startup from external json file. KeyVaultCertificates list new size: ${keyVaultCertificates.length}.`
+    );
   } else {
     console.error('Certificate JSON is not an array.');
   }

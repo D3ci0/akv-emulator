@@ -29,8 +29,18 @@ describe('GET /secrets/:name/:version?', () => {
     const now = new Date();
     const earlier = new Date(now.getTime() - 10000);
     app.locals.keyVaultSecrets = [
-      makeSecret({ name: 'foo', version: 'v1', createdOn: earlier.toISOString(), updatedOn: earlier.toISOString() }),
-      makeSecret({ name: 'foo', version: 'v2', createdOn: now.toISOString(), updatedOn: now.toISOString() }),
+      makeSecret({
+        name: 'foo',
+        version: 'v1',
+        createdOn: earlier.toISOString(),
+        updatedOn: earlier.toISOString(),
+      }),
+      makeSecret({
+        name: 'foo',
+        version: 'v2',
+        createdOn: now.toISOString(),
+        updatedOn: now.toISOString(),
+      }),
     ];
     const res = await request(app).get('/secrets/foo');
     expect(res.status).toBe(200);

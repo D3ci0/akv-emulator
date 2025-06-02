@@ -13,7 +13,7 @@ class SecretProperties {
     tags = {},
     keyId = null,
     managed = null,
-    recoverableDays = null
+    recoverableDays = null,
   } = {}) {
     this.id = id;
     this.version = version;
@@ -53,7 +53,7 @@ class SecretProperties {
       tags: this.tags,
       keyId: this.keyId,
       managed: this.managed,
-      recoverableDays: this.recoverableDays
+      recoverableDays: this.recoverableDays,
     };
   }
 }

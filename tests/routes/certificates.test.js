@@ -18,7 +18,7 @@ function makeCertificate({
   x509Thumbprint = 'abc123',
   cer = 'base64cer',
   keyId = 'keyid',
-  secretId = 'secretid'
+  secretId = 'secretid',
 } = {}) {
   return {
     cer,
@@ -36,8 +36,8 @@ function makeCertificate({
       recoveryLevel,
       recoverableDays,
       tags,
-      x509Thumbprint
-    }
+      x509Thumbprint,
+    },
   };
 }
 
@@ -53,9 +53,19 @@ describe('certificatesRouter', () => {
 
   it('should_return_all_versions_for_certificate_name', async () => {
     app.locals.keyVaultCertificates = [
-      makeCertificate({ name: 'foo', version: 'v1', createdOn: '2023-01-01T00:00:00Z', updatedOn: '2023-01-02T00:00:00Z' }),
-      makeCertificate({ name: 'foo', version: 'v2', createdOn: '2023-02-01T00:00:00Z', updatedOn: '2023-02-02T00:00:00Z' }),
-      makeCertificate({ name: 'bar', version: 'v1' })
+      makeCertificate({
+        name: 'foo',
+        version: 'v1',
+        createdOn: '2023-01-01T00:00:00Z',
+        updatedOn: '2023-01-02T00:00:00Z',
+      }),
+      makeCertificate({
+        name: 'foo',
+        version: 'v2',
+        createdOn: '2023-02-01T00:00:00Z',
+        updatedOn: '2023-02-02T00:00:00Z',
+      }),
+      makeCertificate({ name: 'bar', version: 'v1' }),
     ];
     const res = await request(app).get('/certificates/foo/versions');
     expect(res.status).toBe(200);
@@ -69,8 +79,15 @@ describe('certificatesRouter', () => {
 
   it('should_return_specific_certificate_version_by_name_and_version', async () => {
     app.locals.keyVaultCertificates = [
-      makeCertificate({ name: 'baz', version: 'v1', cer: 'bazcer', keyId: 'bazkey', secretId: 'bazsecret', x509Thumbprint: 'bazthumb' }),
-      makeCertificate({ name: 'baz', version: 'v2' })
+      makeCertificate({
+        name: 'baz',
+        version: 'v1',
+        cer: 'bazcer',
+        keyId: 'bazkey',
+        secretId: 'bazsecret',
+        x509Thumbprint: 'bazthumb',
+      }),
+      makeCertificate({ name: 'baz', version: 'v2' }),
     ];
     const res = await request(app).get('/certificates/baz/v1');
     expect(res.status).toBe(200);
@@ -96,8 +113,8 @@ describe('certificatesRouter', () => {
         notBefore,
         expiresOn,
         createdOn,
-        updatedOn
-      })
+        updatedOn,
+      }),
     ];
     const res = await request(app).get('/certificates/timed/versions');
     expect(res.status).toBe(200);
@@ -109,18 +126,14 @@ describe('certificatesRouter', () => {
   });
 
   it('should_return_404_for_nonexistent_certificate_name_on_versions', async () => {
-    app.locals.keyVaultCertificates = [
-      makeCertificate({ name: 'exists', version: 'v1' })
-    ];
+    app.locals.keyVaultCertificates = [makeCertificate({ name: 'exists', version: 'v1' })];
     const res = await request(app).get('/certificates/doesnotexist/versions');
     expect(res.status).toBe(404);
     expect(res.body).toHaveProperty('error', 'Certificate not found');
   });
 
   it('should_return_404_for_nonexistent_certificate_version', async () => {
-    app.locals.keyVaultCertificates = [
-      makeCertificate({ name: 'alpha', version: 'v1' })
-    ];
+    app.locals.keyVaultCertificates = [makeCertificate({ name: 'alpha', version: 'v1' })];
     const res = await request(app).get('/certificates/alpha/v2');
     expect(res.status).toBe(404);
     expect(res.body).toHaveProperty('error', 'Certificate version not found');
@@ -128,7 +141,7 @@ describe('certificatesRouter', () => {
 
   it('should_return_empty_tags_object_when_no_tags_defined', async () => {
     app.locals.keyVaultCertificates = [
-      makeCertificate({ name: 'notags', version: 'v1', tags: undefined })
+      makeCertificate({ name: 'notags', version: 'v1', tags: undefined }),
     ];
     const res = await request(app).get('/certificates/notags/versions');
     expect(res.status).toBe(200);
