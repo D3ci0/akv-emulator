@@ -6,7 +6,7 @@ export default defineConfig({
             provider: 'v8', // or 'v8' (but 'c8' gives better compatibility)
             reportsDirectory: './coverage',
             reporter: ['text', 'lcov'],
-            exclude: ['**/node_modules/**', '**/tests/**'],
+            exclude: ['**/node_modules/**', '**/tests/**', '**eslint**', 'vitest**'],
         },
     },
 })

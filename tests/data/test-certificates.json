@@ -1,0 +1,62 @@
+[
+  {
+    "cer": "MIIFDzCCA...",
+    "keyId": "https://myvault.vault.azure.net/keys/my-cert/v1",
+    "secretId": "https://myvault.vault.azure.net/secrets/my-cert/v1",
+    "properties": {
+      "vaultUrl": "https://myvault.vault.azure.net/",
+      "version": "v1",
+      "name": "my-cert",
+      "enabled": true,
+      "notBefore": "2023-01-01T00:00:00Z",
+      "expiresOn": "2024-01-01T00:00:00Z",
+      "createdOn": "2023-01-01T00:00:00Z",
+      "updatedOn": "2023-06-01T00:00:00Z",
+      "recoveryLevel": "Recoverable+Purgeable",
+      "id": "my-cert-v1",
+      "tags": { "env": "prod" },
+      "x509Thumbprint": "abc123",
+      "recoverableDays": 90
+    }
+  },
+  {
+    "cer": "MIIFDzCCA...",
+    "keyId": "https://myvault.vault.azure.net/keys/my-cert/v2",
+    "secretId": "https://myvault.vault.azure.net/secrets/my-cert/v2",
+    "properties": {
+      "vaultUrl": "https://myvault.vault.azure.net/",
+      "version": "v2",
+      "name": "my-cert",
+      "enabled": false,
+      "notBefore": "2024-01-02T00:00:00Z",
+      "expiresOn": "2025-01-01T00:00:00Z",
+      "createdOn": "2024-01-02T00:00:00Z",
+      "updatedOn": "2024-06-01T00:00:00Z",
+      "recoveryLevel": "Recoverable+Purgeable",
+      "id": "my-cert-v2",
+      "tags": { "env": "prod" },
+      "x509Thumbprint": "def456",
+      "recoverableDays": 90
+    }
+  },
+  {
+    "cer": "MIIFDzCCA...",
+    "keyId": "https://myvault.vault.azure.net/keys/another-cert/v1",
+    "secretId": "https://myvault.vault.azure.net/secrets/another-cert/v1",
+    "properties": {
+      "vaultUrl": "https://myvault.vault.azure.net/",
+      "version": "v1",
+      "name": "another-cert",
+      "enabled": true,
+      "notBefore": "2023-05-01T00:00:00Z",
+      "expiresOn": "2024-05-01T00:00:00Z",
+      "createdOn": "2023-05-01T00:00:00Z",
+      "updatedOn": "2023-10-01T00:00:00Z",
+      "recoveryLevel": "Recoverable+Purgeable",
+      "id": "another-cert-v1",
+      "tags": { "env": "dev" },
+      "x509Thumbprint": "xyz789",
+      "recoverableDays": 60
+    }
+  }
+]
