@@ -145,3 +145,108 @@ describe('KeyVaultCertificate.fromJSON', () => {
     expect(cert.properties.recoverableDays).toBeNull();
   });
 });
+
+describe('KeyVaultCertificate.toJSON', () => {
+  it('test_toJSON_serializes_null_primitives', () => {
+    const cert = new KeyVaultCertificate({
+      cer: null,
+      keyId: null,
+      secretId: null,
+      properties: null,
+    });
+    const json = cert.toJSON();
+    expect(json).toEqual({
+      cer: null,
+      keyId: null,
+      secretId: null,
+      properties: null,
+    });
+  });
+
+  it('test_toJSON_serializes_properties_instance', () => {
+    const props = new CertificateProperties({
+      vaultUrl: 'https://vault.example.com',
+      version: 'v1',
+      name: 'certName',
+      enabled: true,
+      notBefore: '2023-01-01T00:00:00.000Z',
+      expiresOn: '2024-01-01T00:00:00.000Z',
+      createdOn: '2023-01-01T00:00:00.000Z',
+      updatedOn: '2023-06-01T00:00:00.000Z',
+      recoveryLevel: 'Recoverable',
+      id: 'prop-id-789',
+      tags: { env: 'prod' },
+      x509Thumbprint: 'thumbprint',
+      recoverableDays: 90,
+    });
+    const cert = new KeyVaultCertificate({
+      cer: 'base64cer',
+      keyId: 'key-id-123',
+      secretId: 'secret-id-456',
+      properties: props,
+    });
+    const json = cert.toJSON();
+    expect(json).toEqual({
+      cer: 'base64cer',
+      keyId: 'key-id-123',
+      secretId: 'secret-id-456',
+      properties: props.toJSON(),
+    });
+  });
+
+  it('test_toJSON_handles_buffer_cer', () => {
+    const bufferCer = Buffer.from('testcert');
+    const cert = new KeyVaultCertificate({
+      cer: bufferCer,
+      keyId: 'key-id-123',
+      secretId: 'secret-id-456',
+      properties: null,
+    });
+    const json = cert.toJSON();
+    expect(json.cer).toBe(bufferCer);
+    expect(json.keyId).toBe('key-id-123');
+    expect(json.secretId).toBe('secret-id-456');
+    expect(json.properties).toBeNull();
+  });
+
+  it('test_toJSON_all_fields_undefined', () => {
+    const cert = new KeyVaultCertificate();
+    const json = cert.toJSON();
+    expect(json).toEqual({
+      cer: null,
+      keyId: null,
+      secretId: null,
+      properties: null,
+    });
+  });
+
+  it('test_toJSON_invalid_properties_type', () => {
+    // properties is a number, not null and not CertificateProperties
+    const cert = new KeyVaultCertificate({
+      cer: 'base64cer',
+      keyId: 'key-id-123',
+      secretId: 'secret-id-456',
+      properties: 12345,
+    });
+    const json = cert.toJSON();
+    // The constructor will wrap 12345 in a CertificateProperties instance with all fields null/default
+    expect(json.cer).toBe('base64cer');
+    expect(json.keyId).toBe('key-id-123');
+    expect(json.secretId).toBe('secret-id-456');
+    expect(json.properties).toEqual(new CertificateProperties(12345).toJSON());
+  });
+
+  it('test_toJSON_empty_string_cer', () => {
+    const cert = new KeyVaultCertificate({
+      cer: '',
+      keyId: 'key-id-123',
+      secretId: 'secret-id-456',
+      properties: null,
+    });
+    const json = cert.toJSON();
+    expect(json.cer).toBe('');
+    expect(json.keyId).toBe('key-id-123');
+    expect(json.secretId).toBe('secret-id-456');
+    expect(json.properties).toBeNull();
+  });
+});
