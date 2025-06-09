@@ -1,4 +1,11 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=D3ci0_akv-emulator&metric=coverage)](https://sonarcloud.io/summary/new_code?id=D3ci0_akv-emulator)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=D3ci0_akv-emulator&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=D3ci0_akv-emulator)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=D3ci0_akv-emulator&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=D3ci0_akv-emulator)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=D3ci0_akv-emulator&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=D3ci0_akv-emulator)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=D3ci0_akv-emulator&metric=bugs)](https://sonarcloud.io/summary/new_code?id=D3ci0_akv-emulator)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=D3ci0_akv-emulator&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=D3ci0_akv-emulator)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=D3ci0_akv-emulator&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=D3ci0_akv-emulator)
+[![Duplicated Lines](https://sonarcloud.io/api/project_badges/measure?project=D3ci0_akv-emulator&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=D3ci0_akv-emulator)
 # akv-emulator
 A lightweight **Node.js emulator** for Azure Key Vault that supports a limited set of APIs for secrets and certificates. Designed for local development and testing of client applications that integrate with Azure Key Vault.
 
