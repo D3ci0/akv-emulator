@@ -1,5 +1,5 @@
 {
-  "extends": ["some-other-config-you-chose", "prettier"],
+  "extends": ["prettier"],
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "error"
