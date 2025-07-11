@@ -22,13 +22,14 @@ Supports both **HTTP** and **HTTPS** endpoints.
 
 ## 🔧 Configuration
 
-| Env Variable       | Description                                            | Default |
-|--------------------|--------------------------------------------------------|---------|
-| `HTTP_PORT`        | Port for HTTP server                                   | `3000`  |
-| `HTTPS_PORT`       | Port for HTTPS server                                  | `3443`  |
-| `SSL_CERT_DIR`     | Path to directory containing `cert.pem` and `key.pem`  |         |
-| `SECRETS_DIR`      | Directory with secret data (optional)                  |         |
-| `CERTIFICATES_DIR` | Directory with certificate data (optional)             |         |
+| Env Variable       | Description                                           | Default |
+|--------------------|-------------------------------------------------------|---------|
+| `HTTP_PORT`        | Port for HTTP server                                  | `3000`  |
+| `HTTPS_PORT`       | Port for HTTPS server                                 | `3443`  |
+| `SSL_CERT_DIR`     | Path to directory containing `cert.pem` and `key.pem` |         |
+| `SECRETS_DIR`      | Directory with secrets data (optional)                |         |
+| `CERTIFICATES_DIR` | Directory with certificates data (optional)           |         |
+| `KEYS_DIR`         | Directory with keys data (optional)                   |         |
 
 > ⚠️ HTTPS will only be enabled if both `cert.pem` and `key.pem` are present in the specified `SSL_CERT_DIR`.
 
