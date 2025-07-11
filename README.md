@@ -7,7 +7,7 @@
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=D3ci0_akv-emulator&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=D3ci0_akv-emulator)
 [![Duplicated Lines](https://sonarcloud.io/api/project_badges/measure?project=D3ci0_akv-emulator&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=D3ci0_akv-emulator)
 # akv-emulator
-A lightweight **Node.js emulator** for Azure Key Vault that supports a limited set of APIs for secrets and certificates. Designed for local development and testing of client applications that integrate with Azure Key Vault.
+A lightweight **Node.js emulator** for Azure Key Vault that supports a limited set of APIs for secrets, keys and certificates. Designed for local development and testing of client applications that integrate with Azure Key Vault.
 
 ## Features
 
