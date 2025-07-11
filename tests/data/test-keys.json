@@ -1,0 +1,75 @@
+[
+  {
+    "key": {
+      "kid": "https://myvault.vault.azure.net/keys/my-key/v1",
+      "kty": "RSA",
+      "keyOps": ["encrypt", "decrypt", "sign", "verify"],
+      "n": "00aabbccddeeff00112233445566778899aabbccddeeff00112233445566778899",
+      "e": "AQAB"
+    },
+    "properties": {
+      "vaultUrl": "https://myvault.vault.azure.net/",
+      "version": "v1",
+      "name": "my-key",
+      "enabled": true,
+      "notBefore": "2023-01-01T00:00:00Z",
+      "expiresOn": "2024-01-01T00:00:00Z",
+      "createdOn": "2023-01-01T00:00:00Z",
+      "updatedOn": "2023-06-01T00:00:00Z",
+      "recoveryLevel": "Recoverable+Purgeable",
+      "id": "my-key-v1",
+      "tags": { "env": "prod" },
+      "exportable": false,
+      "releasePolicy": null
+    }
+  },
+  {
+    "key": {
+      "kid": "https://myvault.vault.azure.net/keys/my-key/v2",
+      "kty": "RSA",
+      "keyOps": ["encrypt", "decrypt", "sign", "verify"],
+      "n": "00ffeeddccbbaa99887766554433221100ffeeddccbbaa99887766554433221100",
+      "e": "AQAB"
+    },
+    "properties": {
+      "vaultUrl": "https://myvault.vault.azure.net/",
+      "version": "v2",
+      "name": "my-key",
+      "enabled": false,
+      "notBefore": "2024-01-02T00:00:00Z",
+      "expiresOn": "2025-01-01T00:00:00Z",
+      "createdOn": "2024-01-02T00:00:00Z",
+      "updatedOn": "2024-06-01T00:00:00Z",
+      "recoveryLevel": "Recoverable+Purgeable",
+      "id": "my-key-v2",
+      "tags": { "env": "prod" },
+      "exportable": true,
+      "releasePolicy": null
+    }
+  },
+  {
+    "key": {
+      "kid": "https://myvault.vault.azure.net/keys/another-key/v1",
+      "kty": "EC",
+      "keyOps": ["sign", "verify"],
+      "crv": "P-256",
+      "x": "aabbccddeeff00112233445566778899aabbccddeeff00112233445566778899",
+      "y": "ffeeddccbbaa99887766554433221100ffeeddccbbaa99887766554433221100"
+    },
+    "properties": {
+      "vaultUrl": "https://myvault.vault.azure.net/",
+      "version": "v1",
+      "name": "another-key",
+      "enabled": true,
+      "notBefore": "2023-05-01T00:00:00Z",
+      "expiresOn": "2024-05-01T00:00:00Z",
+      "createdOn": "2023-05-01T00:00:00Z",
+      "updatedOn": "2023-10-01T00:00:00Z",
+      "recoveryLevel": "Recoverable+Purgeable",
+      "id": "another-key-v1",
+      "tags": { "env": "dev" },
+      "exportable": false,
+      "releasePolicy": null
+    }
+  }
+]

@@ -21,15 +21,10 @@ class JsonWebKey {
      * @param {string} [params.x] - EC public key X coordinate.
      * @param {string} [params.y] - EC public key Y coordinate.
      * @param {string} [params.crv] - EC curve name.
-     * @param {string[]} [params.x5c] - X.509 certificate chain.
-     * @param {string} [params.x5t] - X.509 certificate SHA-1 thumbprint.
-     * @param {string} [params['x5t#S256']] - X.509 certificate SHA-256 thumbprint.
-     * @param {string} [params.x5u] - X.509 URL.
      */
     constructor(params = {}) {
         this.kty = params.kty || undefined;
         this.key_ops = params.key_ops || undefined;
-        this.alg = params.alg || undefined;
         this.kid = params.kid || undefined;
         this.n = params.n || undefined;
         this.e = params.e || undefined;
@@ -43,10 +38,6 @@ class JsonWebKey {
         this.x = params.x || undefined;
         this.y = params.y || undefined;
         this.crv = params.crv || undefined;
-        this.x5c = params.x5c || undefined;
-        this.x5t = params.x5t || undefined;
-        this['x5t#S256'] = params['x5t#S256'] || undefined;
-        this.x5u = params.x5u || undefined;
     }
 
     /**

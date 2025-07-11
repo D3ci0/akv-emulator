@@ -15,6 +15,8 @@ A lightweight **Node.js emulator** for Azure Key Vault that supports a limited s
 - ✅ `GET /secrets/:name/:version`
 - ✅ `GET /certificates/:name/versions`
 - ✅ `GET /certificates/:name/:version`
+- ✅ `GET /keys/:name`
+- ✅ `GET /keys/:name/:version`
 
 Supports both **HTTP** and **HTTPS** endpoints.
 
@@ -38,10 +40,11 @@ Supports both **HTTP** and **HTTPS** endpoints.
 
 ## 🧪 Injecting Mock Data
 
-You can provide test secrets and certificates by placing the following files inside the directory specified by `CERTIFICATES_DIR` (or `SECRETS_DIR`, if set differently):
+You can provide test secrets, keys and certificates by placing the following files inside the directory specified by `CERTIFICATES_DIR` (or `SECRETS_DIR` / `KEYS_DIR`, if set differently):
 
 - `test-secrets.json` — defines mock secrets
 - `test-certificates.json` — defines mock certificates
+- `test-keys.json` — defines mock keys
 
 These files should be valid JSON and are automatically loaded at startup. 
 
@@ -93,6 +96,36 @@ These files should be valid JSON and are automatically loaded at startup.
          "recoverableDays": 30
       }
    }
+]
+```
+### Example `test-keys.json`
+
+```json
+[
+  {
+    "key": {
+      "kid": "kid",
+      "kty": "RSA",
+      "keyOps": ["encrypt", "decrypt", "sign", "verify"],
+      "n": "00aabbccddeeff00112233445566778899aabbccddeeff00112233445566778899",
+      "e": "AQAB"
+    },
+    "properties": {
+      "vaultUrl": "https://myvault.vault.azure.net/",
+      "version": "v1",
+      "name": "my-key",
+      "enabled": true,
+      "notBefore": "2023-01-01T00:00:00Z",
+      "expiresOn": "2024-01-01T00:00:00Z",
+      "createdOn": "2023-01-01T00:00:00Z",
+      "updatedOn": "2023-06-01T00:00:00Z",
+      "recoveryLevel": "Recoverable+Purgeable",
+      "id": "my-key-v1",
+      "tags": { "env": "prod" },
+      "exportable": false,
+      "releasePolicy": null
+    }
+  }
 ]
 ```
 
@@ -176,6 +209,7 @@ services:
       - HTTPS_PORT=3443
       - SECRETS_DIR=/data
       - CERTIFICATES_DIR=/data
+      - KEYS_DIR=/data
     ports:
       - "3000:3000"
       - "3443:3443"

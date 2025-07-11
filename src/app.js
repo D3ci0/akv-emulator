@@ -3,8 +3,10 @@ const fs = require('fs');
 const path = require('path');
 const KeyVaultSecret = require('./models/KeyVaultSecret');
 const KeyVaultCertificate = require('./models/KeyVaultCertificate');
+const KeyVaultKey = require('./models/keys/KeyVaultKey');
 const secretsRouter = require('./routes/secrets');
 const certificatesRouter = require('./routes/certificates');
+const keysRouter = require('./routes/keys');
 const app = express();
 
 // Middleware to parse JSON bodies
@@ -14,6 +16,45 @@ app.use(express.json());
 let keyVaultSecrets = [];
 // In-memory storage for the list of KeyVaultCertificates
 let keyVaultCertificates = [];
+// In-memory storage for the list of KeyVaultKeys
+let keyVaultKeys = [];
+
+// Load KeyVaultKeys from example JSON file at boot time
+const keyJsonPath = path.join(__dirname, '../data/example-keys.json');
+try {
+  const keyJson = fs.readFileSync(keyJsonPath, 'utf-8');
+  const keyArray = JSON.parse(keyJson);
+  if (Array.isArray(keyArray)) {
+    keyVaultKeys = keyArray.map(KeyVaultKey.fromJSON);
+    console.log(
+        `Loaded KeyVaultKeys at startup from example json file. KeyVaultKey list new size: ${keyVaultKeys.length}.`
+    );
+  } else {
+    console.error('Key JSON is not an array.');
+  }
+} catch (err) {
+  console.error('Failed to load KeyVaultKeys:', err.message);
+}
+
+// Load KeyVaultKeys from external JSON file at boot time
+// Allow keys file path to be set via environment variable
+try {
+  const externalKeyJson = fs.readFileSync(
+      path.join(process.env.KEYS_DIR, 'test-keys.json'),
+      'utf-8'
+  );
+  const keyArray = JSON.parse(externalKeyJson);
+  if (Array.isArray(keyArray)) {
+    keyVaultKeys = [...keyVaultKeys, ...keyArray.map(KeyVaultKey.fromJSON)];
+    console.log(
+        `Loaded KeyVaultKeys at startup from external json file. KeyVaultKey list new size: ${keyVaultKeys.length}.`
+    );
+  } else {
+    console.error('Key JSON is not an array.');
+  }
+} catch (err) {
+  console.error('Failed to load KeyVaultKeys from external json file:', err.message);
+}
 
 // Load KeyVaultSecrets from example JSON file at boot time
 const secretJsonPath = path.join(__dirname, '../data/example-secrets.json');
@@ -95,9 +136,11 @@ try {
 // Store in app.locals for router access
 app.locals.keyVaultSecrets = keyVaultSecrets;
 app.locals.keyVaultCertificates = keyVaultCertificates;
+app.locals.keyVaultKeys = keyVaultKeys;
 
 // Mount routers
 app.use('/secrets', secretsRouter);
 app.use('/certificates', certificatesRouter);
+app.use('/keys', keysRouter);
 
 module.exports = app;
