@@ -3,14 +3,14 @@ import request from 'supertest';
 import express from 'express';
 import secretsRouter from '../../src/routes/secrets';
 
-function makeSecret({ name, version, createdOn, updatedOn, value = 'secret-value' }) {
+function makeSecret({ name, version, created, updated, value = 'secret-value' }) {
   return {
     value,
-    properties: {
-      name,
+    name,
+    attributes: {
       version,
-      createdOn,
-      updatedOn,
+      created,
+      updated,
     },
   };
 }
@@ -32,45 +32,45 @@ describe('GET /secrets/:name/:version?', () => {
       makeSecret({
         name: 'foo',
         version: 'v1',
-        createdOn: earlier.toISOString(),
-        updatedOn: earlier.toISOString(),
+        created: earlier.toISOString(),
+        updated: earlier.toISOString(),
       }),
       makeSecret({
         name: 'foo',
         version: 'v2',
-        createdOn: now.toISOString(),
-        updatedOn: now.toISOString(),
+        created: now.toISOString(),
+        updated: now.toISOString(),
       }),
     ];
     const res = await request(app).get('/secrets/foo');
     expect(res.status).toBe(200);
-    expect(res.body.properties.version).toBe('v2');
+    expect(res.body.attributes.version).toBe('v2');
   });
 
   it('shouldReturnSpecificSecretVersionWhenNameAndVersionProvided', async () => {
     app.locals.keyVaultSecrets = [
-      makeSecret({ name: 'bar', version: 'v1', createdOn: '2023-01-01T00:00:00Z' }),
-      makeSecret({ name: 'bar', version: 'v2', createdOn: '2023-02-01T00:00:00Z' }),
+      makeSecret({ name: 'bar', version: 'v1', created: '2023-01-01T00:00:00Z' }),
+      makeSecret({ name: 'bar', version: 'v2', created: '2023-02-01T00:00:00Z' }),
     ];
     const res = await request(app).get('/secrets/bar/v1');
     expect(res.status).toBe(200);
-    expect(res.body.properties.version).toBe('v1');
-    expect(res.body.properties.name).toBe('bar');
+    expect(res.body.attributes.version).toBe('v1');
+    expect(res.body.name).toBe('bar');
   });
 
   it('shouldReturnSecretWhenOnlyOneVersionExists', async () => {
     app.locals.keyVaultSecrets = [
-      makeSecret({ name: 'baz', version: 'only', createdOn: '2023-03-01T00:00:00Z' }),
+      makeSecret({ name: 'baz', version: 'only', created: '2023-03-01T00:00:00Z' }),
     ];
     const res = await request(app).get('/secrets/baz');
     expect(res.status).toBe(200);
-    expect(res.body.properties.version).toBe('only');
-    expect(res.body.properties.name).toBe('baz');
+    expect(res.body.attributes.version).toBe('only');
+    expect(res.body.name).toBe('baz');
   });
 
   it('shouldReturn404WhenSecretNameDoesNotExist', async () => {
     app.locals.keyVaultSecrets = [
-      makeSecret({ name: 'exists', version: 'v1', createdOn: '2023-01-01T00:00:00Z' }),
+      makeSecret({ name: 'exists', version: 'v1', created: '2023-01-01T00:00:00Z' }),
     ];
     const res = await request(app).get('/secrets/doesnotexist');
     expect(res.status).toBe(404);
