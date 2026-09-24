@@ -80,11 +80,11 @@ These files should be valid JSON and are automatically loaded at startup.
 [
   {
     "value": "mySecretValue",
-    "id": "123",
+    "id": "https://myvault.vault.azure.net/secrets/mySecret/1",
     "name": "mySecret",
     "contentType": "text/plain",
     "managed": false,
-    "kid": "123",
+    "kid": "https://myvault.vault.azure.net/keys/mySecret/1",
     "tags": {
       "env": "prod"
     },

@@ -33,15 +33,17 @@ class SecretProperties {
   }
 
   toJSON() {
+    const toTimestamp = (date) => (date ? Math.floor(date.getTime() / 1000) : null);
+
     return {
-      created: this.created ? this.created.toISOString() : null,
+      created: toTimestamp(this.created),
       enabled: this.enabled,
-      expires: this.expires ? this.expires.toISOString() : null,
-      notBefore: this.notBefore ? this.notBefore.toISOString() : null,
+      exp: toTimestamp(this.expires),
+      nbf: toTimestamp(this.notBefore),
       recoverableDays: this.recoverableDays,
       version: this.version,
       recoveryLevel: this.recoveryLevel,
-      updated: this.updated ? this.updated.toISOString() : null,
+      updated: toTimestamp(this.updated),
     };
   }
 }

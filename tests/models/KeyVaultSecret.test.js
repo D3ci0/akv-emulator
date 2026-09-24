@@ -75,7 +75,7 @@ describe('KeyVaultSecret.toJSON', () => {
     expect(json.attributes).toMatchObject({
       enabled: true,
       version: 'v1',
-      created: '2023-01-01T00:00:00.000Z',
+      created: 1672531200,
     });
   });
 
@@ -89,8 +89,8 @@ describe('KeyVaultSecret.toJSON', () => {
       enabled: true,
       version: 'v2',
       created: null,
-      expires: null,
-      notBefore: null,
+      exp: null,
+      nbf: null,
       recoverableDays: null,
       recoveryLevel: null,
       updated: null,
@@ -107,8 +107,8 @@ describe('KeyVaultSecret.toJSON', () => {
       version: 'v3',
       enabled: null,
       created: null,
-      expires: null,
-      notBefore: null,
+      exp: null,
+      nbf: null,
       recoverableDays: null,
       recoveryLevel: null,
       updated: null,

@@ -86,23 +86,6 @@ describe('SecretProperties.fromJSON', () => {
 });
 
 describe('SecretProperties.toJSON', () => {
-  it('should serialize date fields to ISO strings', () => {
-    const notBefore = new Date('2023-01-01T00:00:00.000Z');
-    const expires = new Date('2024-01-01T00:00:00.000Z');
-    const created = new Date('2023-01-01T00:00:00.000Z');
-    const updated = new Date('2023-06-01T00:00:00.000Z');
-    const props = new SecretProperties({
-      notBefore,
-      expires,
-      created,
-      updated,
-    });
-    const json = props.toJSON();
-    expect(json.notBefore).toBe(notBefore.toISOString());
-    expect(json.expires).toBe(expires.toISOString());
-    expect(json.created).toBe(created.toISOString());
-    expect(json.updated).toBe(updated.toISOString());
-  });
 
   it('should preserve nonDate field types in JSON output', () => {
     const props = new SecretProperties({
@@ -133,10 +116,10 @@ describe('SecretProperties.toJSON', () => {
     expect(json).toEqual({
       version: 'v2',
       enabled: false,
-      notBefore: new Date('2022-01-01T00:00:00.000Z').toISOString(),
-      expires: new Date('2023-01-01T00:00:00.000Z').toISOString(),
-      created: new Date('2022-01-01T00:00:00.000Z').toISOString(),
-      updated: new Date('2022-06-01T00:00:00.000Z').toISOString(),
+      nbf: 1640995200,
+      exp: 1672531200,
+      created: 1640995200,
+      updated: 1654041600,
       recoveryLevel: 'Purgeable',
       recoverableDays: 7,
     });
@@ -156,8 +139,8 @@ describe('SecretProperties.toJSON', () => {
     const json = props.toJSON();
     expect(json).toHaveProperty('version', null);
     expect(json).toHaveProperty('enabled', null);
-    expect(json).toHaveProperty('notBefore', null);
-    expect(json).toHaveProperty('expires', null);
+    expect(json).toHaveProperty('nbf', null);
+    expect(json).toHaveProperty('exp', null);
     expect(json).toHaveProperty('created', null);
     expect(json).toHaveProperty('updated', null);
     expect(json).toHaveProperty('recoveryLevel', null);
