@@ -89,7 +89,7 @@ describe('KeyVault App Startup', () => {
     expect(Array.isArray(app.locals.keyVaultSecrets)).toBe(true);
     expect(app.locals.keyVaultSecrets.length).toBe(2);
     expect(app.locals.keyVaultSecrets[0].value).toBe('mySecretValue');
-    expect(app.locals.keyVaultSecrets[1].properties.name).toBe('mySecret');
+    expect(app.locals.keyVaultSecrets[1].name).toBe('mySecret');
   });
 
   it('test_load_keyvaultcertificates_from_example_json_success', () => {

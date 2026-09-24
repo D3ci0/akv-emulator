@@ -1,34 +1,28 @@
 class SecretProperties {
   constructor({
-    id = null,
-    version = null,
+    created = null,
     enabled = null,
+    expires = null,
     notBefore = null,
-    expiresOn = null,
-    createdOn = null,
-    updatedOn = null,
-    name = null,
-    recoveryLevel = null,
-    contentType = null,
-    tags = {},
-    keyId = null,
-    managed = null,
     recoverableDays = null,
+    recoveryLevel = null,
+    version = null,
+    updated = null,
   } = {}) {
-    this.id = id;
-    this.version = version;
+    const parseDateValue = (value) => {
+      if (value === undefined || value === null || value === '') return null;
+      const date = new Date(typeof value === 'number' && value < 1e11 ? value * 1000 : value);
+      return isNaN(date.getTime()) ? null : date;
+    };
+
     this.enabled = enabled;
-    this.notBefore = notBefore ? new Date(notBefore) : null;
-    this.expiresOn = expiresOn ? new Date(expiresOn) : null;
-    this.createdOn = createdOn ? new Date(createdOn) : null;
-    this.updatedOn = updatedOn ? new Date(updatedOn) : null;
-    this.name = name;
-    this.recoveryLevel = recoveryLevel;
-    this.contentType = contentType;
-    this.tags = tags;
-    this.keyId = keyId;
-    this.managed = managed;
     this.recoverableDays = recoverableDays;
+    this.recoveryLevel = recoveryLevel;
+    this.version = version;
+    this.notBefore = parseDateValue(notBefore);
+    this.expires = parseDateValue(expires);
+    this.created = parseDateValue(created);
+    this.updated = parseDateValue(updated);
   }
 
   static fromJSON(json) {
@@ -39,21 +33,17 @@ class SecretProperties {
   }
 
   toJSON() {
+    const toTimestamp = (date) => (date ? Math.floor(date.getTime() / 1000) : null);
+
     return {
-      id: this.id,
-      version: this.version,
+      created: toTimestamp(this.created),
       enabled: this.enabled,
-      notBefore: this.notBefore ? this.notBefore.toISOString() : null,
-      expiresOn: this.expiresOn ? this.expiresOn.toISOString() : null,
-      createdOn: this.createdOn ? this.createdOn.toISOString() : null,
-      updatedOn: this.updatedOn ? this.updatedOn.toISOString() : null,
-      name: this.name,
-      recoveryLevel: this.recoveryLevel,
-      contentType: this.contentType,
-      tags: this.tags,
-      keyId: this.keyId,
-      managed: this.managed,
+      exp: toTimestamp(this.expires),
+      nbf: toTimestamp(this.notBefore),
       recoverableDays: this.recoverableDays,
+      version: this.version,
+      recoveryLevel: this.recoveryLevel,
+      updated: toTimestamp(this.updated),
     };
   }
 }

@@ -13,16 +13,16 @@ router.get('/:name/:version?', (req, res) => {
 
   if (version) {
     foundSecret = keyVaultSecrets.find(
-      (s) => s.properties && s.properties.name === name && s.properties.version === version
+      (s) => s.name === name && s.attributes.version === version
     );
   } else {
-    // If version not specified, return the latest (by createdOn or updatedOn)
-    const secrets = keyVaultSecrets.filter((s) => s.properties && s.properties.name === name);
+    // If version not specified, return the latest (by created or updated)
+    const secrets = keyVaultSecrets.filter((s) => s.name === name);
     if (secrets.length > 0) {
-      // Sort by createdOn or updatedOn descending
+      // Sort by created or updated descending
       secrets.sort((a, b) => {
-        const aDate = new Date(a.properties.updatedOn || a.properties.createdOn || 0);
-        const bDate = new Date(b.properties.updatedOn || b.properties.createdOn || 0);
+        const aDate = new Date(a.attributes.updated || a.attributes.created || 0);
+        const bDate = new Date(b.attributes.updated || b.attributes.created || 0);
         return bDate - aDate;
       });
       foundSecret = secrets[0];

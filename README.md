@@ -78,25 +78,27 @@ These files should be valid JSON and are automatically loaded at startup.
 
 ```json
 [
-   {
-      "value": "mySecretValue",
-      "properties": {
-         "id": "123",
-         "version": "1",
-         "enabled": true,
-         "notBefore": "2024-06-01T00:00:00Z",
-         "expiresOn": "2025-06-01T00:00:00Z",
-         "createdOn": "2024-06-01T00:00:00Z",
-         "updatedOn": "2024-06-01T00:00:00Z",
-         "name": "mySecret",
-         "recoveryLevel": "Recoverable",
-         "contentType": "text/plain",
-         "tags": { "env": "prod" },
-         "keyId": "key-abc",
-         "managed": false,
-         "recoverableDays": 30
-      }
-   }
+  {
+    "value": "mySecretValue",
+    "id": "https://myvault.vault.azure.net/secrets/mySecret/1",
+    "name": "mySecret",
+    "contentType": "text/plain",
+    "managed": false,
+    "kid": "https://myvault.vault.azure.net/keys/mySecret/1",
+    "tags": {
+      "env": "prod"
+    },
+    "attributes": {
+      "enabled": true,
+      "notBefore": "2024-06-01T00:00:00Z",
+      "expires": "2025-06-01T00:00:00Z",
+      "created": "2024-06-01T00:00:00Z",
+      "updated": "2024-06-01T00:00:00Z",
+      "recoveryLevel": "Recoverable",
+      "recoverableDays": 30,
+      "version": "1"
+    }
+  }
 ]
 ```
 ### Example `test-keys.json`
