@@ -116,7 +116,7 @@ describe('KeyVaultCertificate.fromJSON', () => {
     expect(cert.properties).toBeNull();
   });
 
-  it("test_fromJSON_handles_invalid_properties_field", () => {
+  it('test_fromJSON_handles_invalid_properties_field', () => {
     const input = {
       cer: 'base64cer',
       keyId: 'key-id-123',

@@ -71,7 +71,7 @@ describe('CertificateProperties.fromJSON', () => {
 
   it('test_fromJSON_with_missing_properties', () => {
     const input = {
-      name: 'cert3'
+      name: 'cert3',
       // All other properties are missing
     };
     const result = CertificateProperties.fromJSON(input);

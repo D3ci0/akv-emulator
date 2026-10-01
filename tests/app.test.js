@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
-import app from "../src/app";
+import app from '../src/app';
 
 // Helper to clear require cache for app.js and its dependencies
 function clearAppRequireCache() {
@@ -50,11 +50,7 @@ describe('KeyVault App Startup', () => {
   }
 
   beforeEach(() => {
-    cleanup([
-      tempSecretsDir,
-      tempCertsDir,
-      tempKeysDir
-    ]);
+    cleanup([tempSecretsDir, tempCertsDir, tempKeysDir]);
     clearAppRequireCache();
     delete process.env.SECRETS_DIR;
     delete process.env.CERTIFICATES_DIR;
@@ -62,11 +58,7 @@ describe('KeyVault App Startup', () => {
   });
 
   afterEach(() => {
-    cleanup([
-      tempSecretsDir,
-      tempCertsDir,
-      tempKeysDir
-    ]);
+    cleanup([tempSecretsDir, tempCertsDir, tempKeysDir]);
     clearAppRequireCache();
     delete process.env.SECRETS_DIR;
     delete process.env.CERTIFICATES_DIR;
@@ -74,7 +66,6 @@ describe('KeyVault App Startup', () => {
   });
 
   it('test_load_keyvaultkeys_from_example_json_success', () => {
-
     const app = require('../src/app');
     expect(app.locals.keyVaultKeys).toBeDefined();
     expect(Array.isArray(app.locals.keyVaultKeys)).toBe(true);
@@ -83,7 +74,6 @@ describe('KeyVault App Startup', () => {
   });
 
   it('test_load_keyvaultsecrets_from_example_json_success', () => {
-
     const app = require('../src/app');
     expect(app.locals.keyVaultSecrets).toBeDefined();
     expect(Array.isArray(app.locals.keyVaultSecrets)).toBe(true);
@@ -93,7 +83,6 @@ describe('KeyVault App Startup', () => {
   });
 
   it('test_load_keyvaultcertificates_from_example_json_success', () => {
-
     const app = require('../src/app');
     expect(app.locals.keyVaultCertificates).toBeDefined();
     expect(Array.isArray(app.locals.keyVaultCertificates)).toBe(true);
@@ -102,23 +91,20 @@ describe('KeyVault App Startup', () => {
   });
 
   it('test_merge_secrets_and_certificates_from_multiple_sources', () => {
-
     process.env.SECRETS_DIR = dataDir;
     process.env.CERTIFICATES_DIR = dataDir;
     process.env.KEYS_DIR = dataDir;
 
     const app = require('../src/app');
     expect(app.locals.keyVaultSecrets.length).toBe(4);
-    expect(app.locals.keyVaultSecrets.some(s => s.value === 'mySecretValueTest')).toBe(true);
-    expect(app.locals.keyVaultSecrets.some(s => s.value === 'mySecretValue')).toBe(true);
+    expect(app.locals.keyVaultSecrets.some((s) => s.value === 'mySecretValueTest')).toBe(true);
+    expect(app.locals.keyVaultSecrets.some((s) => s.value === 'mySecretValue')).toBe(true);
 
     expect(app.locals.keyVaultCertificates.length).toBe(6);
-    expect(app.locals.keyVaultCertificates.some(c => c.cer === 'MIIFDzCCA...')).toBe(true);
-
+    expect(app.locals.keyVaultCertificates.some((c) => c.cer === 'MIIFDzCCA...')).toBe(true);
 
     expect(app.locals.keyVaultKeys.length).toBe(6);
   });
-
 
   it('test_invalid_external_json_file_content', () => {
     // Write invalid external secrets/certs (not an array)

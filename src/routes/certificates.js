@@ -40,20 +40,49 @@ router.get('/:name/versions', (req, res) => {
 });
 
 /**
+ * GET /certificates/:name
  * GET /certificates/:name/:version
- * Mimics Azure Key Vault's getCertificateVersion API.
+ * Mimics Azure Key Vault's getCertificate and getCertificateVersion APIs.
  */
-router.get('/:name/:version', (req, res) => {
+router.get('/:name/:version?', (req, res) => {
   const { name, version } = req.params;
-  const keyVaultCertificates = req.app.locals.keyVaultCertificates || [];
+  const rawCertificates = req.app.locals.keyVaultCertificates;
+  const keyVaultCertificates = Array.isArray(rawCertificates) ? rawCertificates : [];
 
-  // Find the certificate with the given name and version
-  const cert = keyVaultCertificates.find(
-    (c) => c.properties && c.properties.name === name && c.properties.version === version
-  );
+  let cert = null;
 
-  if (!cert) {
-    return res.status(404).json({ error: 'Certificate version not found' });
+  if (version) {
+    // Find the certificate with the given name and version
+    cert = keyVaultCertificates.find(
+      (c) => c.properties && c.properties.name === name && c.properties.version === version
+    );
+
+    if (!cert) {
+      return res.status(404).json({ error: 'Certificate version not found' });
+    }
+  } else {
+    // If version is not specified, return the latest certificate (by updatedOn or createdOn)
+    const matchingCerts = keyVaultCertificates.filter(
+      (c) => c.properties && c.properties.name === name
+    );
+
+    if (matchingCerts.length === 0) {
+      return res.status(404).json({ error: 'Certificate not found' });
+    }
+
+    // Sort descending by updatedOn, falling back to createdOn
+    matchingCerts.sort((a, b) => {
+      const aUpdated = new Date(a.properties?.updatedOn || 0).getTime();
+      const bUpdated = new Date(b.properties?.updatedOn || 0).getTime();
+      if (bUpdated !== aUpdated) {
+        return bUpdated - aUpdated;
+      }
+      const aCreated = new Date(a.properties?.createdOn || 0).getTime();
+      const bCreated = new Date(b.properties?.createdOn || 0).getTime();
+      return bCreated - aCreated;
+    });
+
+    cert = matchingCerts[0];
   }
 
   // Convert ISO date strings to Unix timestamps (seconds)

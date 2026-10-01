@@ -17,7 +17,11 @@ describe('KeyVaultSecret.fromJSON', () => {
 
   it('test_fromJSON_with_json_string_input', () => {
     const attributesObj = { version: 'v2' };
-    const input = JSON.stringify({ value: 'anotherSecret', name: 'mySecret', attributes: attributesObj });
+    const input = JSON.stringify({
+      value: 'anotherSecret',
+      name: 'mySecret',
+      attributes: attributesObj,
+    });
     const result = KeyVaultSecret.fromJSON(input);
 
     expect(result).toBeInstanceOf(KeyVaultSecret);
@@ -67,7 +71,11 @@ describe('KeyVaultSecret.toJSON', () => {
       version: 'v1',
       created: '2023-01-01T00:00:00.000Z',
     };
-    const secret = new KeyVaultSecret({ value: 12345, name: 'nestedSecret', attributes: attributesObj });
+    const secret = new KeyVaultSecret({
+      value: 12345,
+      name: 'nestedSecret',
+      attributes: attributesObj,
+    });
     const json = secret.toJSON();
 
     expect(json.value).toBe(12345);

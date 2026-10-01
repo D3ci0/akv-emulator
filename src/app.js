@@ -27,7 +27,7 @@ try {
   if (Array.isArray(keyArray)) {
     keyVaultKeys = keyArray.map(KeyVaultKey.fromJSON);
     console.log(
-        `Loaded KeyVaultKeys at startup from example json file. KeyVaultKey list new size: ${keyVaultKeys.length}.`
+      `Loaded KeyVaultKeys at startup from example json file. KeyVaultKey list new size: ${keyVaultKeys.length}.`
     );
   } else {
     console.error('Key JSON is not an array.');
@@ -40,14 +40,14 @@ try {
 // Allow keys file path to be set via environment variable
 try {
   const externalKeyJson = fs.readFileSync(
-      path.join(process.env.KEYS_DIR, 'test-keys.json'),
-      'utf-8'
+    path.join(process.env.KEYS_DIR, 'test-keys.json'),
+    'utf-8'
   );
   const keyArray = JSON.parse(externalKeyJson);
   if (Array.isArray(keyArray)) {
     keyVaultKeys = [...keyVaultKeys, ...keyArray.map(KeyVaultKey.fromJSON)];
     console.log(
-        `Loaded KeyVaultKeys at startup from external json file. KeyVaultKey list new size: ${keyVaultKeys.length}.`
+      `Loaded KeyVaultKeys at startup from external json file. KeyVaultKey list new size: ${keyVaultKeys.length}.`
     );
   } else {
     console.error('Key JSON is not an array.');

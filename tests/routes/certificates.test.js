@@ -160,4 +160,76 @@ describe('certificatesRouter', () => {
     expect(res.status).toBe(404);
     expect(res.body).toHaveProperty('error', 'Certificate not found');
   });
+
+  it('should_return_latest_certificate_version_when_version_is_not_specified', async () => {
+    app.locals.keyVaultCertificates = [
+      makeCertificate({
+        name: 'my-cert',
+        version: 'v1',
+        createdOn: '2023-01-01T00:00:00Z',
+        updatedOn: '2023-01-02T00:00:00Z',
+      }),
+      makeCertificate({
+        name: 'my-cert',
+        version: 'v2',
+        createdOn: '2023-02-01T00:00:00Z',
+        updatedOn: '2023-02-02T00:00:00Z',
+        cer: 'v2cer',
+        secretId: 'v2secret',
+        x509Thumbprint: 'v2thumb',
+      }),
+      makeCertificate({ name: 'other-cert', version: 'v1' }),
+    ];
+
+    const res = await request(app).get('/certificates/my-cert');
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty('id');
+    expect(res.body.id).toContain('my-cert/v2');
+    expect(res.body).toHaveProperty('kid', 'v2thumb');
+    expect(res.body).toHaveProperty('sid', 'v2secret');
+    expect(res.body).toHaveProperty('cer', 'v2cer');
+    expect(res.body).toHaveProperty('attributes');
+    expect(res.body).toHaveProperty('tags');
+    expect(res.body).toHaveProperty('x5t', 'v2thumb');
+  });
+
+  it('should_handle_trailing_slash_when_requesting_certificate_by_name', async () => {
+    app.locals.keyVaultCertificates = [
+      makeCertificate({
+        name: 'my-cert',
+        version: 'v1',
+        createdOn: '2023-01-01T00:00:00Z',
+      }),
+      makeCertificate({
+        name: 'my-cert',
+        version: 'v2',
+        createdOn: '2023-02-01T00:00:00Z',
+      }),
+    ];
+
+    const res = await request(app).get('/certificates/my-cert/');
+    expect(res.status).toBe(200);
+    expect(res.body.id).toContain('my-cert/v2');
+  });
+
+  it('should_return_404_when_certificate_does_not_exist_by_name', async () => {
+    app.locals.keyVaultCertificates = [makeCertificate({ name: 'existing-cert', version: 'v1' })];
+
+    const res = await request(app).get('/certificates/nonexistent');
+    expect(res.status).toBe(404);
+    expect(res.body).toHaveProperty('error', 'Certificate not found');
+  });
+
+  it('should_handle_missing_or_invalid_keyVaultCertificates_on_get_certificate_by_name', async () => {
+    // Case 1: keyVaultCertificates is undefined
+    let res = await request(app).get('/certificates/my-cert');
+    expect(res.status).toBe(404);
+    expect(res.body).toHaveProperty('error', 'Certificate not found');
+
+    // Case 2: keyVaultCertificates is not an array
+    app.locals.keyVaultCertificates = null;
+    res = await request(app).get('/certificates/my-cert');
+    expect(res.status).toBe(404);
+    expect(res.body).toHaveProperty('error', 'Certificate not found');
+  });
 });

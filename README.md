@@ -13,6 +13,7 @@ A lightweight **Node.js emulator** for Azure Key Vault that supports a limited s
 
 - ✅ `GET /secrets/:name`
 - ✅ `GET /secrets/:name/:version`
+- ✅ `GET /certificates/:name`
 - ✅ `GET /certificates/:name/versions`
 - ✅ `GET /certificates/:name/:version`
 - ✅ `GET /keys/:name`

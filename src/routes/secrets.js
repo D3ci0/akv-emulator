@@ -12,9 +12,7 @@ router.get('/:name/:version?', (req, res) => {
   let foundSecret = null;
 
   if (version) {
-    foundSecret = keyVaultSecrets.find(
-      (s) => s.name === name && s.attributes.version === version
-    );
+    foundSecret = keyVaultSecrets.find((s) => s.name === name && s.attributes.version === version);
   } else {
     // If version not specified, return the latest (by created or updated)
     const secrets = keyVaultSecrets.filter((s) => s.name === name);

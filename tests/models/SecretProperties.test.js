@@ -86,7 +86,6 @@ describe('SecretProperties.fromJSON', () => {
 });
 
 describe('SecretProperties.toJSON', () => {
-
   it('should preserve nonDate field types in JSON output', () => {
     const props = new SecretProperties({
       version: 'v1',
